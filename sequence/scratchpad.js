@@ -26,9 +26,7 @@ function fibSequence(n) {
     document.body.appendChild(div);
 
   }
-return div;
+return { div: div, value: value };
 }
 
 document.body.appendChild(fibSequence(6));
-
-
