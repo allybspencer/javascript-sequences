@@ -75,3 +75,39 @@ return { div: tribdiv, value: value };
 }
 
 document.body.appendChild(tribSequence(6));
+
+
+function pellSequence(n) {
+  var value;
+  var pelldiv = document.createElement('div');
+    if (n === 0) {
+      value = 0;
+        var p = document.createElement('p');
+        p.textContent = 'Pell(' + n + ') = ' + value;
+        pelldiv.appendChild(p);
+        document.body.appendChild(pelldiv);
+    } 
+    else if (n === 1) {
+      value = 1;
+        var p = document.createElement('p');
+        p.textContent = 'Pell(' + n + ') = ' + value;
+        pelldiv.appendChild(p);
+        document.body.appendChild(pelldiv);
+    }
+  else {
+    var left = pellSequence(n - 1);
+    var right = pellSequence(n - 2);
+   
+    value = 2*left.value + right.value;
+    var p = document.createElement('p');
+    p.textContent = 'Pell(' + n + ') = ' + value;
+    pelldiv.appendChild(p);
+
+    document.body.appendChild(pelldiv);
+    
+
+  }
+return { pelldiv: pelldiv, value: value };
+}
+
+document.body.appendChild(pellSequence(6));
