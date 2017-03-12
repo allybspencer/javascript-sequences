@@ -109,7 +109,6 @@ style.textContent =
 	"}";;
 	
 	document.querySelector('body').appendChild(style);
-	
 fibSequence(5);
 
 
