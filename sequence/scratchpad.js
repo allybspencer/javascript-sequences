@@ -21,8 +21,8 @@ function fibSequence(n) {
     var classy = left.div.getAttribute("class");
 		left.div.setAttribute("class", classy + " fib-left");
     var right = fibSequence(n - 2);
-		right.div.setAttribute("class", classy + " fib-right");
-    var classy = right.div.getAttribute("class");
+		right.div.setAttribute("class", classier + " fib-right");
+    var classier = right.div.getAttribute("class");
     
     value = left.value + right.value;
     var p = document.createElement('p');
@@ -41,11 +41,6 @@ return { div: div, value: value };
 
 var style = document.createElement('style');
 style.textContent = 
-	/*"#fib {" +
-	"	display: inline-block;" +
-	"	width: 20000px;" +
-	"}" +
-	"" +*/
 	".fib {" +
 	"	background-color: rgba(0,0,255,0.1);" +
 	"}" +
@@ -70,6 +65,37 @@ style.textContent =
 	"	border-color: rgb(0,0,255);" +
 	"	background:   rgb(60,60,180);" +
 	"	box-shadow: 1px 1px 2px rgba(0,0,200,0.4);" +
+	"}" +
+	
+	".trib {" +
+	"	background-color: rgba(0,0,255,0.1);" +
+	"}" +
+	"" +
+	".trib-left {" +
+	"	float: left;" +
+	"	display: inline-block;" +
+	"	margin-right: 4px;" +
+	"}" +
+	"" +
+	".trib-right {" +
+	"	float: right;" +
+	"	display: inline-block;" +
+	"	margin-left: 4px;" +
+	"}" +
+	".trib-middle {" +
+	"	float: middle;" +
+	"	display: inline-block;" +
+	"	margin-left: 4px;" +
+	"}" +
+	"" +
+	".shadowed {" +
+	"	text-shadow: 1px 1px 2px black;" +
+	"	color:       white;" +
+	"}" +
+	".green {" +
+	"	border-color: rgb(0,255,0);" +
+	"	background:   rgb(60,180,60);" +
+	"	box-shadow: 1px 1px 2px rgba(0,200,0,0.4);" +
 	"}";
 	
 	document.querySelector('body').appendChild(style);
@@ -80,6 +106,7 @@ fibSequence(9);
 function tribSequence(n) {
   var value;
   var tribdiv = document.createElement('div');
+    tribdiv.setAttribute("class", "trib");
     if (n === 0) {
       value = 0;
         var p = document.createElement('p');
@@ -103,8 +130,14 @@ function tribSequence(n) {
     }
   else {
     var left = tribSequence(n - 1);
+    var classy = left.div.getAttribute("class");
+		left.div.setAttribute("class", classy + " trib-left");
     var right = tribSequence(n - 2);
+    var classy = right.div.getAttribute("class");
+		right.div.setAttribute("class", classy + " trib-right");
     var middle = tribSequence(n - 2);   
+    var classy = middle.div.getAttribute("class");
+		left.div.setAttribute("class", classy + " trib-middle");
    
     value = left.value + right.value + middle.value;
     var p = document.createElement('p');
