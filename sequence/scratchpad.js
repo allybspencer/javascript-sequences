@@ -61,14 +61,8 @@ style.textContent =
 	"	text-shadow: 1px 1px 2px black;" +
 	"	color:       white;" +
 	"}" +
-	".blue {" +
-	"	border-color: rgb(0,0,255);" +
-	"	background:   rgb(60,60,180);" +
-	"	box-shadow: 1px 1px 2px rgba(0,0,200,0.4);" +
-	"}" +
-	
 	".trib {" +
-	"	background-color: rgba(0,0,255,0.1);" +
+	"	background-color: rgba(0,255,0,0.1);" +
 	"}" +
 	"" +
 	".trib-left {" +
@@ -91,22 +85,38 @@ style.textContent =
 	".shadowed {" +
 	"	text-shadow: 1px 1px 2px black;" +
 	"	color:       white;" +
+	"}"+
+	
+	".pell {" +
+	"	background-color: rgba(255,0,0,0.1);" +
 	"}" +
-	".green {" +
-	"	border-color: rgb(0,255,0);" +
-	"	background:   rgb(60,180,60);" +
-	"	box-shadow: 1px 1px 2px rgba(0,200,0,0.4);" +
-	"}";
+	"" +
+	".pell-left {" +
+	"	float: left;" +
+	"	display: inline-block;" +
+	"	margin-right: 4px;" +
+	"}" +
+	"" +
+	".pell-right {" +
+	"	float: right;" +
+	"	display: inline-block;" +
+	"	margin-left: 4px;" +
+	"}" +
+	"" +
+	".shadowed {" +
+	"	text-shadow: 1px 1px 2px black;" +
+	"	color:       white;" +
+	"}";;
 	
 	document.querySelector('body').appendChild(style);
 	
-fibSequence(9);
+fibSequence(5);
 
 
 function tribSequence(n) {
   var value;
   var tribdiv = document.createElement('div');
-    tribdiv.setAttribute("class", "trib");
+  tribdiv.setAttribute("class", "trib");
     if (n === 0) {
       value = 0;
         var p = document.createElement('p');
@@ -150,13 +160,13 @@ function tribSequence(n) {
   }
 return { div: tribdiv, value: value };
 }
-
-document.body.appendChild(tribSequence(11));
+tribSequence(5);
 
 
 function pellSequence(n) {
   var value;
   var pelldiv = document.createElement('div');
+  pelldiv.setAttribute("class", "pell");
     if (n === 0) {
       value = 0;
         var p = document.createElement('p');
@@ -173,7 +183,11 @@ function pellSequence(n) {
     }
   else {
     var left = pellSequence(n - 1);
+    var classy = left.pelldiv.getAttribute("class");
+		left.pelldiv.setAttribute("class", classy + " pell-left");
     var right = pellSequence(n - 2);
+    var classy = right.pelldiv.getAttribute("class");
+		right.pelldiv.setAttribute("class", classy + " pell-right");
    
     value = 2*left.value + right.value;
     var p = document.createElement('p');
@@ -187,4 +201,37 @@ function pellSequence(n) {
 return { pelldiv: pelldiv, value: value };
 }
 
-document.body.appendChild(pellSequence(11));
+pellSequence(5);
+
+function links() {
+
+  var a = document.createElement('a');
+  var linkText = document.createTextNode("Fibonacci numbers");
+  a.appendChild(linkText);
+  a.title = "Fibonacci numbers";
+  a.href = "https://oeis.org/A000045";
+  document.body.appendChild(a);
+  
+  var p = document.createElement('p');
+  document.body.appendChild(p);
+  
+  var a = document.createElement('a');
+  var linkText = document.createTextNode("Pell numbers");
+  a.appendChild(linkText);
+  a.title = "Pell numbers";
+  a.href = "https://oeis.org/A000129";
+  document.body.appendChild(a);
+  
+  var p = document.createElement('p');
+  document.body.appendChild(p);
+  
+  var a = document.createElement('a');
+  var linkText = document.createTextNode("Tribonacci numbers");
+  a.appendChild(linkText);
+  a.title = "Tribonacci numbers";
+  a.href = "https://oeis.org/A000073";
+  document.body.appendChild(a);
+  
+  document.title = "Sequences!";
+}
+links();
