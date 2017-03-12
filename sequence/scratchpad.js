@@ -1,6 +1,7 @@
 function fibSequence(n) {
   var value;
   var div = document.createElement('div');
+  div.setAttribute("class", "fib");
     if (n === 0) {
       value = 0;
         var p = document.createElement('p');
@@ -17,12 +18,19 @@ function fibSequence(n) {
     }
   else {
     var left = fibSequence(n - 1);
+    var classy = left.div.getAttribute("class");
+		left.div.setAttribute("class", classy + " fib-left");
     var right = fibSequence(n - 2);
-   
+		right.div.setAttribute("class", classy + " fib-right");
+    var classy = right.div.getAttribute("class");
+    
     value = left.value + right.value;
     var p = document.createElement('p');
     p.textContent = 'Fib(' + n + ') = ' + value;
     div.appendChild(p);
+    
+    div.appendChild(left.div);
+    div.appendChild(right.div);
 
     document.body.appendChild(div);
     
@@ -31,7 +39,43 @@ function fibSequence(n) {
 return { div: div, value: value };
 }
 
-document.body.appendChild(fibSequence(6));
+var style = document.createElement('style');
+style.textContent = 
+	/*"#fib {" +
+	"	display: inline-block;" +
+	"	width: 20000px;" +
+	"}" +
+	"" +*/
+	".fib {" +
+	"	background-color: rgba(0,0,255,0.1);" +
+	"}" +
+	"" +
+	".fib-left {" +
+	"	float: left;" +
+	"	display: inline-block;" +
+	"	margin-right: 4px;" +
+	"}" +
+	"" +
+	".fib-right {" +
+	"	float: right;" +
+	"	display: inline-block;" +
+	"	margin-left: 4px;" +
+	"}" +
+	"" +
+	".shadowed {" +
+	"	text-shadow: 1px 1px 2px black;" +
+	"	color:       white;" +
+	"}" +
+	".blue {" +
+	"	border-color: rgb(0,0,255);" +
+	"	background:   rgb(60,60,180);" +
+	"	box-shadow: 1px 1px 2px rgba(0,0,200,0.4);" +
+	"}";
+	
+	document.querySelector('body').appendChild(style);
+	
+fibSequence(9);
+
 
 function tribSequence(n) {
   var value;
@@ -74,7 +118,7 @@ function tribSequence(n) {
 return { div: tribdiv, value: value };
 }
 
-document.body.appendChild(tribSequence(6));
+document.body.appendChild(tribSequence(11));
 
 
 function pellSequence(n) {
@@ -110,4 +154,4 @@ function pellSequence(n) {
 return { pelldiv: pelldiv, value: value };
 }
 
-document.body.appendChild(pellSequence(6));
+document.body.appendChild(pellSequence(11));
