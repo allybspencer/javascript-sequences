@@ -86,7 +86,18 @@ style.textContent =
 	"	text-shadow: 1px 1px 2px black;" +
 	"	color:       white;" +
 	"}"+
-	
+	".stuff-box {" +
+	"	font-family: 'helvetica neue', helvetica, sans-serif;" +
+	"	letter-spacing: 1px;" +
+	"	text-transform: capitalize;" +
+	"	text-align: center;" +
+	"	padding: 3px 10px;" +
+	"	margin: 10px;" +
+	"	cursor: pointer;" +
+	"	border-radius: 10px;" +
+	"	border-width: 2px;" +
+	"	border-style: solid;" +
+	"}"+
 	".pell {" +
 	"	background-color: rgba(255,0,0,0.1);" +
 	"}" +
@@ -240,10 +251,7 @@ var fibButton = function(me) {
   var form = me.parentNode;
   var slider = form.querySelector('input');
   var value = slider.value;
-  console.log(value);
-  var div = document.createElement('div');
-  div.setAttribute("fib");
-  div.appendChild(fib(value, form.parentNode));
+  fib(value, form.parentNode);
 }
 
 var fibSlider = function(me) {
@@ -255,9 +263,7 @@ var tribButton = function(me) {
   var form = me.parentNode;
   var slider = form.querySelector('input');
   var value = slider.value;
-  console.log(value);
-  var div = document.createElement('div');
-  div.appendChild(tribSequence(value));
+  trib(value, form.parentNode);
   
 }
 
@@ -270,10 +276,7 @@ var pellButton = function(me) {
   var form = me.parentNode;
   var slider = form.querySelector('input');
   var value = slider.value;
-  console.log(value);
-  var div = document.createElement('div');
-  div.setAttribute("class", "pell");
-  div.appendChild(pellSequence(value));
+  pell(value, form.parentNode);
 }
 
 var pellSlider = function(me) {
@@ -292,6 +295,33 @@ var fib = function (n, node) {
 	node.appendChild(tree.div);
 }
 
-fibSequence(11);
-tribSequence(11);
-pellSequence(11);
+
+var fib = function (n, node) {
+	var fibTree = node.querySelector('div.fib');
+	if (fibTree) {
+		node.removeChild(fibTree);
+	}
+
+	var tree = fibSequence(n);
+	node.appendChild(tree.div);
+}
+
+var trib = function (n, node) {
+	var tribTree = node.querySelector('div.trib');
+	if (tribTree) {
+		node.removeChild(tribTree);
+	}
+
+	var tree = tribSequence(n);
+	node.appendChild(tree.div);
+}
+
+var pell = function (n, node) {
+	var pellTree = node.querySelector('div.pell');
+	if (pellTree) {
+		node.removeChild(pellTree);
+	}
+
+	var tree = pellSequence(n);
+	node.appendChild(tree.div);
+}
